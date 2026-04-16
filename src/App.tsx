@@ -246,6 +246,7 @@ function App() {
       </nav>
 
 
+
       {/* Hero Section */}
       <section id="home" className="hero-section">
         <div className="hero-grid">
@@ -330,15 +331,16 @@ function App() {
         </div>
         
         {/* Partner Logos */}
-        <div style={{ position: 'absolute', bottom: '100px', width: '100%', left: 0, padding: '0 40px', overflow: 'hidden' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '60px', opacity: 0.4, filter: 'grayscale(1) brightness(2)' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.2rem' }}>ROG</span>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.2rem' }}>LOGITECH G</span>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.2rem' }}>RAZER</span>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.2rem' }}>CORSAIR</span>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.2rem' }}>NVIDIA</span>
+        <div className="partner-logos-container">
+          <div className="partner-logos-flex">
+            <span className="partner-logo">ROG</span>
+            <span className="partner-logo">LOGITECH G</span>
+            <span className="partner-logo">RAZER</span>
+            <span className="partner-logo">CORSAIR</span>
+            <span className="partner-logo">NVIDIA</span>
           </div>
         </div>
+
         
         <motion.div 
           className="scroll-indicator"
@@ -362,16 +364,17 @@ function App() {
             <p style={{ marginTop: '20px', color: 'var(--text-muted)' }}>
               Founded in 2024, our mission is to provide every gamer with access to the highest-performance hardware in an environment that fosters community and competition.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '30px' }}>
-              <div className="glass-panel" style={{ padding: '20px', border: 'none', background: 'rgba(255,255,255,0.03)' }}>
+            <div className="about-stats-grid">
+              <div className="glass-panel stat-card">
                 <h4 style={{ color: 'var(--cyan)' }}>50+</h4>
                 <p style={{ fontSize: '0.8rem' }}>High-End Rigs</p>
               </div>
-              <div className="glass-panel" style={{ padding: '20px', border: 'none', background: 'rgba(255,255,255,0.03)' }}>
+              <div className="glass-panel stat-card">
                 <h4 style={{ color: 'var(--cyan)' }}>10Gbps</h4>
                 <p style={{ fontSize: '0.8rem' }}>Fiber Internet</p>
               </div>
             </div>
+
           </motion.div>
           <div className="features-grid">
             {[
@@ -393,9 +396,10 @@ function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" style={{ padding: '100px 20px' }}>
+      <section id="testimonials" className="responsive-section">
         <h2 className="section-title text-gradient">Gamer Feedback</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+        <div className="testimonials-grid">
+
           {[
             { name: 'Marcus R.', role: 'Competitive Player', text: 'The 240Hz monitors are a game changer. Lowest ping I have ever experienced in the city.' },
             { name: 'Sarah K.', role: 'Streamer', text: 'Love the VIP suites! The lighting and atmosphere are perfect for my late-night streams.' },
@@ -550,7 +554,8 @@ function App() {
       {/* Tournaments Section */}
       <section id="tournaments">
         <h2 className="section-title text-gradient">Active Tournaments</h2>
-        <div className="about-grid" style={{ gridTemplateColumns: 'minmax(300px, 1fr) 1.5fr' }}>
+        <div className="tournament-grid">
+
           <div className="glass-panel" style={{ padding: '30px' }}>
             <h3 style={{ color: 'var(--cyan)', marginBottom: '20px' }}><IconTrophy style={{ verticalAlign: 'middle', marginRight: '10px' }} /> Daily Challenges</h3>
             <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -597,7 +602,8 @@ function App() {
         {/* Hall of Fame Section */}
         <div style={{ marginTop: '60px' }}>
           <h3 className="section-title text-gradient" style={{ fontSize: '2rem', marginBottom: '40px' }}>Hall of Fame</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+          <div className="hall-of-fame-grid">
+
             {[
               { name: 'SlayerX', game: 'Valorant', score: '382 Wins' },
               { name: 'Ghost99', game: 'Counter-Strike 2', score: '24 MVPs' },
@@ -615,17 +621,18 @@ function App() {
       </section>
 
       {/* Booking Section */}
-      <section id="booking" style={{ background: 'rgba(0,0,0,0.3)' }}>
+      <section id="booking" className="booking-section-outer">
         <h2 className="section-title text-gradient">Instant Booking</h2>
         
-        <div className="booking-container glass-panel" style={{ padding: '50px', maxWidth: '1000px', margin: '0 auto' }}>
+        <div className="booking-container glass-panel">
+
           {/* Bundle Offers */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginBottom: '50px' }}>
+          <div className="bundles-grid">
             {[
               { title: 'Squad Night', desc: '5 PCs for 4 hours + Drinks', price: '₹1500', color: 'var(--cyan)' },
               { title: 'All-Nighter', desc: '10 PM - 6 AM Extreme Play', price: '₹500', color: 'var(--purple)' }
             ].map((b, i) => (
-              <div key={i} style={{ padding: '20px', borderRadius: '12px', border: `1px solid ${b.color}`, background: `${b.color}05`, position: 'relative' }}>
+              <div key={i} className="bundle-card" style={{ border: `1px solid ${b.color}`, background: `${b.color}05` }}>
                 <div style={{ position: 'absolute', top: -10, right: 10, background: b.color, color: '#000', fontSize: '0.7rem', fontWeight: 800, padding: '2px 10px', borderRadius: '10px' }}>POPULAR</div>
                 <h4 style={{ color: b.color, marginBottom: '5px' }}>{b.title}</h4>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '10px' }}>{b.desc}</p>
@@ -633,7 +640,8 @@ function App() {
               </div>
             ))}
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px' }}>
+
+          <div className="booking-form-grid">
             <div className="form-group">
               <label className="form-label"><IconGamepad /> Gaming Zone</label>
               <select className="form-control" value={gameType} onChange={(e) => setGameType(e.target.value)}>
@@ -650,11 +658,12 @@ function App() {
               <label className="form-label"><IconClock /> Session Time (Hrs)</label>
               <input type="number" className="form-control" min="1" max="12" value={hours} onChange={(e) => setHours(e.target.value)} />
             </div>
-            <div style={{ alignSelf: 'center', textAlign: 'center' }}>
+            <div className="total-due-container">
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', letterSpacing: '1px' }}>TOTAL DUE</div>
-              <div className="total-price" style={{ fontSize: '3.5rem', fontWeight: 800, color: 'var(--cyan)', textShadow: '0 0 15px rgba(0,242,254,0.5)' }}>₹{price}</div>
+              <div className="total-price-display">₹{price}</div>
             </div>
           </div>
+
           <button className="btn btn-primary" style={{ width: '100%', marginTop: '50px', padding: '25px', fontSize: '1.2rem', fontWeight: 700 }}>RESERVE MY SESSION</button>
         </div>
       </section>
