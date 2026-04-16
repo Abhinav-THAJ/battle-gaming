@@ -71,6 +71,9 @@ const IconClock = (props: any) => <svg width="24" height="24" viewBox="0 0 24 24
 const IconTrophy = (props: any) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>;
 const IconCpu = (props: any) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 15h3"/><path d="M1 9h3"/><path d="M1 15h3"/></svg>;
 const IconZap = (props: any) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>;
+const IconMenu = (props: any) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>;
+const IconX = (props: any) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>;
+
 
 // --- VISUAL BACKGROUND ---
 const VisualBackground = () => (
@@ -165,7 +168,9 @@ const LoadingPage = ({ onComplete }: { onComplete: () => void }) => {
 function App() {
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [gameType, setGameType] = useState('pc');
+
   const [hours, setHours] = useState('1');
   const [players, setPlayers] = useState('1');
   const [price, setPrice] = useState(15);
@@ -202,7 +207,7 @@ function App() {
 
       {/* Navigation */}
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '30px', flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <img 
               src={heroImg} 
@@ -216,21 +221,30 @@ function App() {
             <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.4rem', color: 'white', letterSpacing: '2px' }}>BATTLESTATION</span>
           </div>
 
-          <div style={{ padding: '4px 12px', background: 'rgba(0, 255, 0, 0.1)', border: '1px solid rgba(0, 255, 0, 0.2)', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="arena-status" style={{ padding: '4px 12px', background: 'rgba(0, 255, 0, 0.1)', border: '1px solid rgba(0, 255, 0, 0.2)', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: 6, height: 6, background: '#00ff00', borderRadius: '50%', boxShadow: '0 0 8px #00ff00' }} />
             <span style={{ fontSize: '0.7rem', color: '#00ff00', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Arena Live: 42/50 Available</span>
           </div>
         </div>
 
-        <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">Arena</a></li>
-          <li><a href="#zones">Zones</a></li>
-          <li><a href="#titles">Titles</a></li>
-          <li><a href="#tournaments">Tournaments</a></li>
-          <li><a href="#booking">Booking</a></li>
+        <div 
+          className="menu-toggle" 
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{ zIndex: 1001, cursor: 'pointer', color: 'white', display: 'none', alignItems: 'center', justifyContent: 'center' }}
+        >
+          {menuOpen ? <IconX style={{ width: 30, height: 30 }} /> : <IconMenu style={{ width: 30, height: 30 }} />}
+        </div>
+
+        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
+          <li><a href="#about" onClick={() => setMenuOpen(false)}>Arena</a></li>
+          <li><a href="#zones" onClick={() => setMenuOpen(false)}>Zones</a></li>
+          <li><a href="#titles" onClick={() => setMenuOpen(false)}>Titles</a></li>
+          <li><a href="#tournaments" onClick={() => setMenuOpen(false)}>Tournaments</a></li>
+          <li><a href="#booking" onClick={() => setMenuOpen(false)}>Booking</a></li>
         </ul>
       </nav>
+
 
       {/* Hero Section */}
       <section id="home" className="hero-section">
